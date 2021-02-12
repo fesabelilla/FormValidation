@@ -1,12 +1,37 @@
 <?php 
 
 	$nameError = "";
+	$emailError = "";
+	$genderError = "";
+	$WebsiteError = "";
 	if (isset($_POST["Submit"])) {
 		if(empty($_POST["Name"])){
 			$nameError = "Name is required";
 		}else{
 			$Name = testUserInput($_POST["Name"]);
 		}
+		// for email
+		if(empty($_POST["Email"])){
+			$emailError = "Email is required";
+		}else{
+			$email = testUserInput($_POST["Email"]);
+		}
+		//for gender
+
+		if(empty($_POST["Gender"])){
+			$genderError = "Gender is required";
+		}else{
+			$gender = testUserInput($_POST["Gender"]);
+		}
+
+		//for website
+		if(empty($_POST["Website"])){
+			$WebsiteError = "Website is required";
+		}else{
+			$website = testUserInput($_POST["Website"]);
+		}
+
+
 	}
 
 	function testUserInput($data)
@@ -50,14 +75,15 @@
 		<span class="Error">*</span><?php echo $nameError;  ?><br>	 
 		E-mail:<br>
 		<input class="input" type="text" Name="Email" value="">
-		<span class="Error">*</span><br>
+		<span class="Error">*</span><?php echo $emailError;?><br>
 		Gender:<br>
 		<input class="radio" type="radio" Name="Gender" value="Female">Female
 		<input class="radio" type="radio" Name="Gender" value="Male">Male
-		<span class="Error">*</span><br>		   
+		<span class="Error">*</span><?php echo $genderError;  
+		?><br>		   
 		Website:<br>
 		<input class="input" type="text" Name="Website" value="">
-		<span class="Error">*</span><br>
+		<span class="Error">*</span> <?php echo $WebsiteError;  ?><br>
 		Comment:<br>
 		<textarea Name="Comment" rows="5" cols="25"></textarea>
 		<br>
