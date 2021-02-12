@@ -1,3 +1,11 @@
+<!--
+Name:   /^[A-Za-z. ]*$/
+email: /[a-zA-Z0-9._-]{3,}@[a-zA-Z0-9._-]{3,}[.][a-zA-Z0-9._-]{2,}/
+
+website : /(https:|ftp:)\/\/+[a-zA-Z0-9.\-_\/?\$=&\#\~`!]+\.[a-zA-Z0-9.\-_\/?\$=&\#\~`!]*/
+
+ -->
+
 <?php 
 
 	$nameError = "";
@@ -8,13 +16,21 @@
 		if(empty($_POST["Name"])){
 			$nameError = "Name is required";
 		}else{
-			$Name = testUserInput($_POST["Name"]);
+			$name = testUserInput($_POST["Name"]);
+				if (!preg_match("/^[A-Za-z. ]*$/", $name)) {
+					$nameError = "Only letter and white space are allowed";
+				}
 		}
 		// for email
 		if(empty($_POST["Email"])){
 			$emailError = "Email is required";
 		}else{
 			$email = testUserInput($_POST["Email"]);
+				if (!preg_match("/[a-zA-Z0-9._-]{3,}@[a-zA-Z0-9._-]{3,}[.][a-zA-Z0-9._-]{2,}/
+", $email)) {
+					$emailError = "Invalid email format";
+					
+				}
 		}
 		//for gender
 
@@ -29,6 +45,10 @@
 			$WebsiteError = "Website is required";
 		}else{
 			$website = testUserInput($_POST["Website"]);
+
+			if (!preg_match("/(https:|ftp:)\/\/+[a-zA-Z0-9.\-_\/?\$=&\#\~`!]+\.[a-zA-Z0-9.\-_\/?\$=&\#\~`!]*/", $website)) {
+				$WebsiteError = "Invalid website assress";
+			}
 		}
 
 
